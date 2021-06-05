@@ -16,31 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbusuario`
+-- Table structure for table `tbcartao`
 --
 
-DROP TABLE IF EXISTS `tbusuario`;
+DROP TABLE IF EXISTS `tbcartao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbusuario` (
-  `idtbusuario` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nomeusuario` varchar(50) NOT NULL,
-  `senha` varchar(200) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`idtbusuario`),
-  UNIQUE KEY `nomeusuario_UNIQUE` (`nomeusuario`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `tbcartao` (
+  `idcartao` int(11) NOT NULL AUTO_INCREMENT,
+  `nomecartao` varchar(50) DEFAULT NULL,
+  `numerocartao` varchar(16) DEFAULT NULL,
+  `datavalidade` varchar(5) DEFAULT NULL,
+  `securitycode` varchar(3) DEFAULT NULL,
+  PRIMARY KEY (`idcartao`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbusuario`
+-- Dumping data for table `tbcartao`
 --
 
-LOCK TABLES `tbusuario` WRITE;
-/*!40000 ALTER TABLE `tbusuario` DISABLE KEYS */;
-INSERT INTO `tbusuario` VALUES (1,'guilherme','$2b$10$goA4DwBcuusUlh.MMsvncOwkhUJASOiewQTy4hRxmBJ65EzMe6p2S','gui.vbsamolao@hotamil.com');
-/*!40000 ALTER TABLE `tbusuario` ENABLE KEYS */;
+LOCK TABLES `tbcartao` WRITE;
+/*!40000 ALTER TABLE `tbcartao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbcartao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

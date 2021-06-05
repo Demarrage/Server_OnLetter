@@ -22,7 +22,7 @@ const cx = mysql.createConnection({
 });
 cx.connect((error, dados) => {
   if (error) {
-    console.error(`Erro ao tentar executar o servidor -> ${erro.stack}`);
+    console.error(`Erro ao tentar executar o servidor -> ${error.stack}`);
     return;
   }
   console.log(`Dados do servidor -> ${cx.threadId}`);
@@ -47,7 +47,7 @@ app.post("/usuario/cadastro", cors(configCors), (req, res) => {
   });
 });
 app.get("/usuario/listar", cors(configCors), (req, res) => {
-  cx.query("selec * from tbusuario", (error, result) => {
+  cx.query("select   * from tbusuario", (error, result) => {
     if (error) {
       res
         .status(400)
@@ -92,5 +92,33 @@ app.post("/usuario/login", cors(configCors), (req, res) => {
     }
   );
 });
+// ROTAS PARA O CARTÃO
+app.post("/cartao/cadastrar"),cors(configCors),(req,res)=>{
+  const nc = req.body.nomecartao;
+  const nmc = req.body.numerocartao;
+  const dv = req.body.datavalidade;
+  const sc = req.body.securitycode;
+  cx.query("insert into tbcartao set nomecartao=?,numerocartao=?,datavalidade=?,securitycode=?")
+  [nc,nmc,dv,sc],
+  (error,result) => {
+    if(error){
+      res.status(400).send({ output: `não cadastrou -> ${error}` });
+          return;
+        
+        res.status(201).send({ output: result });
+    };
+  };
+};
+app.get("/cartao/listar"),cors(configCors),(req,res) =>{
+  cx.query("select * from tbcartao"), (error,result) =>{
+    if(error){
+      res
+      .status(400)
+      .send({output:`não foi possivel listar os dados ${error}`});
+      return;
+    }
+    res.status(200).send({output:result})
+  }
+}
 
 app.listen(5005);
